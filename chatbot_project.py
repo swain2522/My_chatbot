@@ -53,9 +53,9 @@ api_key = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 # ------------------------- LOAD MODEL -------------------------
 llm = HuggingFaceEndpoint(
     repo_id="google/gemma-2-2b-it",
-    task="conversational",
+    task="text-generation",
     huggingfacehub_api_token=api_key,
-    max_new_tokens=150
+    max_new_tokens=512
 )
 
 model = ChatHuggingFace(llm=llm)
@@ -88,7 +88,7 @@ if user_input:
     st.session_state.chat_history.append(HumanMessage(content=user_input))
 
     # Get model response
-    response = model.invoke(user_input)
+    response = model.invoke(st.session_state.chat_history)
     st.session_state.chat_history.append(AIMessage(content=response.content))
 
     # Rerun to update UI instantly
