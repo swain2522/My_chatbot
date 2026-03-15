@@ -57,7 +57,7 @@ if api_key is None:
 
 # ---------------- LOAD MODEL ----------------
 llm = HuggingFaceEndpoint(
-    repo_id="google/gemma-2-2b-it",
+    repo_id="HuggingFaceH4/zephyr-7b-beta",
     task="text-generation",
     huggingfacehub_api_token=api_key,
     max_new_tokens=512,
